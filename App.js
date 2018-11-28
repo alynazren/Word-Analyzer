@@ -7,12 +7,46 @@ export default class App extends Component{
     super();
     this.state = {
       word: '',
-      result: ''
+      result: '',
+      break: 0,
+      countCon: 0,
+      countV: 0
     }
   }
 
   calculateWord = () => {
-    this.setState({result: this.state.word});
+
+    // setState for word
+    this.setState( {result: this.state.word} );
+
+    // setState for no of character
+    this.setState( {break: noOfChar} );
+
+    // declare and split the word into array
+    var num = this.state.word ;
+    var newWord = num.split("");
+
+    //calculate no of character
+    var noOfChar = num.length;
+    
+    var x;
+    var countConso=0;
+    var countVow=0;
+
+    // to iterate each element in newWord array
+    for(x in newWord){
+      var vowel = ['a','A','e','E','i','I','o','O','u','U'];
+      
+      // to detect if letter exist in newWord array
+      if ( vowel.includes(newWord[x]) ){
+        countVow = countVow+1;
+      } else {
+        countConso = countConso+1;
+      }
+    }
+    // set final variable to State
+    this.setState({countCon: countConso});
+    this.setState({countV: countVow});
   }
 
   render() {
@@ -29,14 +63,13 @@ export default class App extends Component{
         </View>
 
         <View style={Styles.container}>
-        {/* Button punya tag aku problem, so i change to text.. nanti kau change to button */}
         <Text color="#841584" onPress={this.calculateWord} title='Analyze'>Analyze</Text>
         <Text></Text>
         <Text></Text>
         <Text style={Styles.instructions}>Your word: {this.state.result}</Text>
-        {/* <Text style={Styles.instructions}>No of Consonants: {this.state.}</Text>
-        <Text style={Styles.instructions}>No of Vowels: {this.state.}</Text>
-        <Text style={Styles.instructions}>No of Characters: {this.state.}</Text> */}
+        <Text style={Styles.instructions}>No of Consonants: {this.state.countCon}</Text>
+        <Text style={Styles.instructions}>No of Vowels: {this.state.countV}</Text>
+        <Text style={Styles.instructions}>No of Characters: {this.state.break}</Text>
         </View>
       </View>
     );
