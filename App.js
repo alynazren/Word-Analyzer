@@ -14,6 +14,7 @@ export default class App extends Component{
     }
   }
 
+  // --------------------------------------------------------------------------- Amalina
   calculateWord = () => {
 
     // setState for word
@@ -49,6 +50,7 @@ export default class App extends Component{
     this.setState({countV: countVow});
   }
 
+  // ------------------------------------------------------------------ Rusyda
   render() {
     return (
       <View style={Styles.container}>
